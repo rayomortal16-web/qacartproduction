@@ -1,0 +1,537 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #e5e7eb;
+  background: #0a192f;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+.container {
+  width: min(1120px, 100% - 2rem);
+  margin: 0 auto;
+}
+
+.site-header {
+  background: #020c1b;
+  border-bottom: 1px solid #1e3a5f;
+  padding: 1rem 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header-inner {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  padding-left: 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  height: 78px;
+  padding: 0, 0;
+}
+
+.logo-img {
+  height: 110%;
+  width: auto;
+  object-fit: contain;
+}
+
+.hero {
+  padding: 0;
+  margin-top: 60px;
+  width: 100%;
+}
+
+.hero-canvas-full {
+  position: relative;
+  width: 100%;
+  height: 600px;
+  overflow: hidden;
+}
+
+.canvas-3d-banner {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.canvas-3d-banner canvas {
+  display: block !important;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.hero-hint {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: rgba(10, 25, 47, 0.6);
+  padding: 10px 20px;
+  border-radius: 20px;
+  color: #e5e7eb;
+  font-size: 0.9rem;
+  pointer-events: none;
+}
+
+.filosofia-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+.filosofia-texto p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #8892b0;
+}
+
+.filosofia-imagen {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.filosofia-imagen img {
+  width: 100%;
+  height: auto;
+}
+
+.servicios-section {
+  margin-top: 4rem;
+  padding: 4rem 0;
+  background: #020c1b;
+}
+
+.servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+.servicio-card {
+  background: #112240;
+  border-radius: 1rem;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid #1e3a5f;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.servicio-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 83, 161, 0.3);
+}
+
+.servicio-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.servicio-card h3 {
+  color: #ffffff;
+  margin: 0 0 1rem;
+  font-size: 1.3rem;
+}
+
+.servicio-card p {
+  color: #8892b0;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.drag-section {
+  padding: 4rem 0;
+  background: #020c1b;
+}
+
+.drag-drop-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin: 3rem 0;
+  align-items: center;
+  position: relative;
+  min-height: 600px;
+}
+
+.items-arrastrables {
+  width: 100%;
+  max-width: 1000px;
+  min-height: 200px;
+  position: relative;
+  margin: 0 auto;
+  margin-bottom: 2rem;
+}
+
+.drag-drop-container {
+  gap: 3rem;
+}
+
+.tarjeta-servicio {
+  position: absolute;
+  width: 220px;
+  height: 150px;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  cursor: grab;
+  user-select: none;
+  border: 2px solid #1e3a5f;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  z-index: 10;
+}
+
+.tarjeta-servicio:hover {
+  border-color: #0053a1;
+  box-shadow: 0 8px 20px rgba(0, 83, 161, 0.3);
+}
+
+.tarjeta-servicio:active {
+  cursor: grabbing;
+}
+
+.img-tarjeta {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(5px);
+  transition: filter 0.3s;
+}
+
+.overlay-texto {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  text-align: center;
+  padding: 1rem;
+}
+
+.overlay-texto h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.overlay-texto p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #8892b0;
+}
+
+#zona-drop-destino {
+  min-height: 350px;
+  width: 100%;
+  max-width: 600px;
+  background: #112240;
+  border: 3px dashed #1e3a5f;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+  transition: all 0.3s;
+  color: white;
+}
+
+#img-destino {
+  max-width: 100%;
+  max-height: 280px;
+  border-radius: 8px;
+  display: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+#texto-destino {
+  color: #8892b0;
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.equipo-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: #112240;
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  border: 1px solid #1e3a5f;
+}
+
+.equipo-card img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.equipo-info h3 {
+  margin: 0 0 0.25rem;
+  color: #ffffff;
+}
+
+.equipo-info .role {
+  color: #64ffda;
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+}
+
+.equipo-info p {
+  color: #8892b0;
+  line-height: 1.6;
+  margin: 0;
+}
+
+#equipo {
+  padding-bottom: 4rem;
+}
+
+#equipo h2 {
+  text-align: center;
+}
+
+.site-footer {
+  background: #020c1b;
+  border-top: 1px solid #1e3a5f;
+  padding: 2rem 0;
+  text-align: center;
+  color: #8892b0;
+  font-size: 0.9rem;
+}
+
+.site-footer strong {
+  color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+  .hero-canvas-full {
+    height: 500px;
+  }
+  
+  .filosofia-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+  
+  .items-arrastrables {
+    min-height: 350px;
+    margin-bottom: 2rem;
+  }
+  
+  .tarjeta-servicio {
+    width: 170px;
+    height: 130px;
+  }
+  
+  .drag-drop-container {
+    min-height: 700px;
+    gap: 2.5rem;
+  }
+  
+  .overlay-texto h4 {
+    font-size: 0.9rem;
+  }
+  
+  .overlay-texto p {
+    font-size: 0.7rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .header-inner {
+    padding: 0 1rem;
+  }
+  
+  .logo-img {
+    height: 55px;
+  }
+  
+  .hero-canvas-full {
+    height: 450px;
+  }
+  
+  .hero-hint {
+    font-size: 0.8rem;
+    padding: 8px 15px;
+    bottom: 10px;
+  }
+  
+  .section h2 {
+    font-size: 1.6rem;
+  }
+  
+  .filosofia-content {
+    grid-template-columns: 1fr;
+  }
+  
+  .items-arrastrables {
+    min-height: 350px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .tarjeta-servicio {
+    width: 150px;
+    height: 115px;
+  }
+  
+  .drag-drop-container {
+    min-height: 680px;
+    gap: 2rem;
+  }
+  
+  .overlay-texto h4 {
+    font-size: 0.85rem;
+  }
+  
+  .overlay-texto p {
+    font-size: 0.65rem;
+  }
+  
+  #zona-drop-destino {
+    min-height: 280px;
+    max-width: 100%;
+  }
+  
+  .servicios-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .equipo-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .equipo-card img {
+    width: 120px;
+    height: 120px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-inner {
+    padding: 0 0.5rem;
+  }
+  
+  .logo-img {
+    height: 45px;
+  }
+  
+  .hero-canvas-full {
+    height: 400px;
+  }
+  
+  .hero-hint {
+    font-size: 0.75rem;
+    padding: 6px 12px;
+  }
+  
+  .section {
+    padding: 2.5rem 0;
+  }
+  
+  .section h2 {
+    font-size: 1.4rem;
+  }
+  
+  .section-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+  }
+  
+  .items-arrastrables {
+    min-height: 300px;
+    margin-bottom: 1rem;
+  }
+  
+  .tarjeta-servicio {
+    width: 130px;
+    height: 100px;
+  }
+  
+  .drag-drop-container {
+    min-height: 640px;
+    gap: 1.5rem;
+  }
+  
+  .overlay-texto h4 {
+    font-size: 0.75rem;
+  }
+  
+  .overlay-texto p {
+    font-size: 0.6rem;
+  }
+  
+  #zona-drop-destino {
+    min-height: 240px;
+    padding: 1rem;
+  }
+  
+  #texto-destino {
+    font-size: 0.85rem;
+  }
+  
+  .servicio-card {
+    padding: 1.5rem;
+  }
+  
+  .servicio-icon {
+    font-size: 2.5rem;
+  }
+  
+  .equipo-card {
+    padding: 1rem;
+  }
+  
+  .equipo-info h3 {
+    font-size: 1.2rem;
+  }
+  
+  .site-footer {
+    font-size: 0.75rem;
+    padding: 1.5rem 0;
+  }
+}
